@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>我的博客</title>
+  
+  <subtitle>个人首页</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-06-26T09:07:29.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>亖 巠</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>老朱</title>
+    <link href="http://yoursite.com/2018/06/26/laozhu/"/>
+    <id>http://yoursite.com/2018/06/26/laozhu/</id>
+    <published>2018-06-26T09:01:52.000Z</published>
+    <updated>2018-06-26T09:07:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="老朱的屌炸了"><a href="#老朱的屌炸了" class="headerlink" title="老朱的屌炸了"></a>老朱的屌炸了</h1><ul><li>vue</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">     &lt;div&gt;</span><br><span class="line">         &lt;template v-for=&quot;item in list&quot;&gt;</span><br><span class="line">              &lt;p&gt;&#123;&#123;item.content&#125;&#125;&lt;/p&gt;</span><br><span class="line">              &lt;img :src=&quot;item.img&quot; alt=&quot;&quot;&gt;</span><br><span class="line">              &lt;p class=&quot;divider&quot;&gt;&lt;/p&gt;</span><br><span class="line">         &lt;/template&gt;</span><br><span class="line">     &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">     data () &#123;</span><br><span class="line">         return &#123;</span><br><span class="line">             list : [</span><br><span class="line">                 &#123;content : &apos;ziksang&apos;,img :&apos;https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1301074775,1382810875&amp;fm=80&amp;w=179&amp;h=119&amp;img.JPEG&apos;&#125;,</span><br><span class="line">                 &#123;content : &apos;ziksang2&apos;,img :&apos;https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1312092207,1376369244&amp;fm=80&amp;w=179&amp;h=119&amp;img.JPEG&apos;&#125;</span><br><span class="line">             ]</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">body,html&#123;</span><br><span class="line">    width:100%;</span><br><span class="line">    height:100%</span><br><span class="line">&#125;</span><br><span class="line">.divider&#123;</span><br><span class="line">    width:100%;</span><br><span class="line">    height:1px;</span><br><span class="line">    background:black;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;老朱的屌炸了&quot;&gt;&lt;a href=&quot;#老朱的屌炸了&quot; class=&quot;headerlink&quot; title=&quot;老朱的屌炸了&quot;&gt;&lt;/a&gt;老朱的屌炸了&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;vue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="test" scheme="http://yoursite.com/tags/test/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>test_word</title>
+    <link href="http://yoursite.com/2018/06/26/test-word/"/>
+    <id>http://yoursite.com/2018/06/26/test-word/</id>
+    <published>2018-06-26T06:54:45.000Z</published>
+    <updated>2018-06-26T08:58:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="First-One"><a href="#First-One" class="headerlink" title="First One"></a>First One</h1><h2 id="Second-Two"><a href="#Second-Two" class="headerlink" title="Second Two"></a>Second Two</h2><hr><ul><li>这是react<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="number">1</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Aone</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Componet</span> </span>&#123;</span><br><span class="line">    render () &#123;</span><br><span class="line">        <span class="keyword">const</span> b = <span class="string">`2`</span>;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;Hello word! &#123;b&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Aone;</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;First-One&quot;&gt;&lt;a href=&quot;#First-One&quot; class=&quot;headerlink&quot; title=&quot;First One&quot;&gt;&lt;/a&gt;First One&lt;/h1&gt;&lt;h2 id=&quot;Second-Two&quot;&gt;&lt;a href=&quot;#Second-Two&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="网站" scheme="http://yoursite.com/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+</feed>
