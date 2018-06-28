@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>我的博客</title>
+  <title>Technology of heaven</title>
   
-  <subtitle>个人首页</subtitle>
+  <subtitle>Personal homepage</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2018-06-26T09:07:29.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://blog.sgoldl.top/"/>
+  <updated>2018-06-27T03:26:36.000Z</updated>
+  <id>http://blog.sgoldl.top/</id>
   
   <author>
     <name>亖 巠</name>
@@ -17,9 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>test_word</title>
+    <link href="http://blog.sgoldl.top/2018/06/27/test-PP/"/>
+    <id>http://blog.sgoldl.top/2018/06/27/test-PP/</id>
+    <published>2018-06-27T02:54:45.000Z</published>
+    <updated>2018-06-27T03:26:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="First-One"><a href="#First-One" class="headerlink" title="First One"></a>First One</h1><h2 id="Second-Two"><a href="#Second-Two" class="headerlink" title="Second Two"></a>Second Two</h2><hr><ul><li><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;First-One&quot;&gt;&lt;a href=&quot;#First-One&quot; class=&quot;headerlink&quot; title=&quot;First One&quot;&gt;&lt;/a&gt;First One&lt;/h1&gt;&lt;h2 id=&quot;Second-Two&quot;&gt;&lt;a href=&quot;#Second-Two&quot; cla
+      
+    
+    </summary>
+    
+      <category term="测试" scheme="http://blog.sgoldl.top/categories/%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="网站" scheme="http://blog.sgoldl.top/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="Test" scheme="http://blog.sgoldl.top/tags/Test/"/>
+    
+  </entry>
+  
+  <entry>
     <title>老朱</title>
-    <link href="http://yoursite.com/2018/06/26/laozhu/"/>
-    <id>http://yoursite.com/2018/06/26/laozhu/</id>
+    <link href="http://blog.sgoldl.top/2018/06/26/laozhu/"/>
+    <id>http://blog.sgoldl.top/2018/06/26/laozhu/</id>
     <published>2018-06-26T09:01:52.000Z</published>
     <updated>2018-06-26T09:07:29.000Z</updated>
     
@@ -38,16 +65,16 @@
     </summary>
     
     
-      <category term="test" scheme="http://yoursite.com/tags/test/"/>
+      <category term="test" scheme="http://blog.sgoldl.top/tags/test/"/>
     
   </entry>
   
   <entry>
     <title>test_word</title>
-    <link href="http://yoursite.com/2018/06/26/test-word/"/>
-    <id>http://yoursite.com/2018/06/26/test-word/</id>
+    <link href="http://blog.sgoldl.top/2018/06/26/test-word/"/>
+    <id>http://blog.sgoldl.top/2018/06/26/test-word/</id>
     <published>2018-06-26T06:54:45.000Z</published>
-    <updated>2018-06-26T08:58:28.000Z</updated>
+    <updated>2018-06-27T03:26:51.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="First-One"><a href="#First-One" class="headerlink" title="First One"></a>First One</h1><h2 id="Second-Two"><a href="#Second-Two" class="headerlink" title="Second Two"></a>Second Two</h2><hr><ul><li>这是react<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="number">1</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Aone</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Componet</span> </span>&#123;</span><br><span class="line">    render () &#123;</span><br><span class="line">        <span class="keyword">const</span> b = <span class="string">`2`</span>;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;div&gt;Hello word! &#123;b&#125;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Aone;</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
@@ -60,10 +87,12 @@
     
     </summary>
     
+      <category term="前端" scheme="http://blog.sgoldl.top/categories/%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="网站" scheme="http://yoursite.com/tags/%E7%BD%91%E7%AB%99/"/>
     
-      <category term="前端" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="网站" scheme="http://blog.sgoldl.top/tags/%E7%BD%91%E7%AB%99/"/>
+    
+      <category term="前端" scheme="http://blog.sgoldl.top/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   

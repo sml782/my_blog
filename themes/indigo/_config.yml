@@ -23,12 +23,6 @@ menu:
   github:
     url: https://github.com/sml782
     target: _blank
-  weibo:
-    url: http://www.weibo.com/ysweb
-    target: _blank
-  link:
-    text: 测试
-    url: /custom
 
 # 你的头像url
 avatar: /img/avatar.jpg
@@ -46,9 +40,9 @@ email: 782015430@qq.com
 color: '#3F51B5'
 
 # 页面标题
-tags_title: Tags
+tags_title: 标签
 archives_title: 归档
-categories_title: Categories
+categories_title: 分类
 
 # 文章截断
 excerpt_render: false
@@ -66,8 +60,8 @@ share: true
 # 是否开启打赏，关闭 reward: false
 reward:
   title: 感谢赏赐~
-  wechat: /img/wechat.jpg     #微信，关闭设为 false
-  alipay: /img/alipay.jpg     #支付宝，关闭设为 false
+  wechat: /img/wechat.JPG     #微信，关闭设为 false
+  alipay: /img/alipay.png     #支付宝，关闭设为 false
 
 # 是否开启搜索
 search: true
@@ -120,9 +114,10 @@ gitment: false
 
 # Valine Comment system. https://valine.js.org
 valine:
-  enable: false # 如果你想使用valine，请将值设置为 true
-  appId:  # your leancloud appId
-  appKey:  # your leancloud appKey
+  enable: true # 如果你想使用valine，请将值设置为 true
+  appId: HBR3Tf4rCqfgE3DJ9A1bnPhh-gzGzoHsz # your leancloud appId
+  appKey: 0QXjubYv4mb61IK7LIIobjKP # your leancloud appKey
+  lang: zh-cn # language : zh-cn | en
   notify: false # Mail notify
   verify: false # Verify code
   avatar: mm # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide
@@ -142,10 +137,10 @@ hyper_id: false
 canonical: false
 
 # 版权起始年份
-since_year: 2015
+since_year: 2017
 
 # 用户页面中作者相关的描述性文字，如不需要设为 false
-about: 用户页面中作者相关的描述性文字，如不需要设为 false
+about: 人在码在，为码？为码！为码。
 
 # “不蒜子”访问量统计，详见 http://ibruce.info/2015/04/04/busuanzi/
 visit_counter:
@@ -165,4 +160,4 @@ cdn: true
 lightbox: true
 
 # icp备案号  ICP_license: 京ICP备1234556号-1
-ICP_license: false
+ICP_license: 浙ICP备18025901号

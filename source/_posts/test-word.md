@@ -1,6 +1,7 @@
 ---
 title: test_word
 date: 2018-06-26 14:54:45
+categories: [ 前端 ]
 tags: [ 网站, 前端 ]
 published: true
 ---

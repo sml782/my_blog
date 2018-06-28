@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 我的博客
-subtitle: 个人首页
+title: Technology of heaven
+subtitle: Personal homepage
 description: 亖 巠 的个人博客。
 keywords: 个人博客, 博客
 author: 亖 巠
@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.sgoldl.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
