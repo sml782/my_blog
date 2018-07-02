@@ -5,6 +5,11 @@
   "hexo": {
     "version": "3.7.1"
   },
+  "scripts": {
+    "start": "hexo server --watch",
+    "dev": "hexo generate --watch",
+    "publish": "rm -rf ./public && hexo deploy --generate"
+  },
   "dependencies": {
     "hexo": "^3.2.0",
     "hexo-deployer-rsync": "^0.1.3",
