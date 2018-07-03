@@ -5,7 +5,7 @@ tags: [ 面向对象, 继承 ]
 categories: [ JS ]
 published: true
 ---
-# JavaScript面向对象程序设计
+**JavaScript面向对象程序设计**
 本文会碰到的知识点： 
 原型、原型链、函数对象、普通对象、继承
 
@@ -19,7 +19,7 @@ published: true
 * 了解如何用ES5模拟类，以及各种方式的优缺点
 * 了解如何用ES6实现面向对象
 
-## 一、面向对象的基本概念
+# 一、面向对象的基本概念
 面向对象也即是OOP，Object Oriented Programming，是计算机的一种编程架构，OOP的基本原则是计算机是由子程序作用的单个或者多个对象组合而成，包含属性和方法的对象是类的实例，但是JavaScript中没有类的概念，而是直接使用对象来实现编程。 
 特性：
 * 封装：能够将一个实体的信息、功能、响应都封装到一个单独对象中的特性。
@@ -42,7 +42,7 @@ insObject.getName(); // hello
 
 ** 继承：在不改变源程序的基础上进行扩充，原功能得以保存，并且对子程序进行扩展，避免重复代码编写，后面的章节详细描述 **
 
-## 二、JavaScript对象属性
+# 二、JavaScript对象属性
 想弄懂面向对象，是不是先看看对象是啥呢？
 我们先看一个题目:
 ```js
@@ -52,7 +52,7 @@ insObject.getName(); // hello
 解释： 
 在第一行中，`{}`出现在`+`操作符的表达式中，因此被翻译为一个实际的值（一个空`object`）。而`[]`被强制转换为"",因此`{}`也会被强制转换为一个`string:"[object Object]"`。 
 但在第二行中，`{}`被翻译为一个独立的`{}`空代码块儿（它什么也不做）。块儿不需要分号来终结它们，所以这里缺少分号不是一个问题。最终，`+ []`是一个将`[]`明确强制转换 为`number`的表达式，而它的值是`0`。
-### 2.1 属性
+## 2.1 属性
 *对象的属性*
 * Object.prototype Object 的原型对象，不是每个对象都有prototype属性
 * Object.prototype.proto 不是标准方法，不鼓励使用，每个对象都有proto属性，但是由于浏览器实现方式的不同，proto属性在chrome、firefox中实现了，在IE中并不支持，替代的方法是Object.getPrototypeOf()
@@ -70,7 +70,7 @@ insObject.getName(); // hello
 | enumerable | 属性值是否可枚举，true表示可枚举for-in, false表示不可枚举 | true |
 | configurable | 属性的特性是否可配置，表示能否通过delete删除属性后重新定义属性 | true |
 例子: 
-![](http://sml-myoss.oss-cn-beijing.aliyuncs.com/blog/word_img/20180702231814.png?Expires=1530554407&OSSAccessKeyId=TMP.AQHCd1RMWKjA3RAtZLXmhwWVVeiO5oPvxvXPy7zV9-LMDVLVHCa8kWsTdlk3ADAtAhUAsW-H-UT_inX-jf4Xzb0JhlOCOxQCFBpYwOGJlUIrSpjXzwC7qvaP1jIY&Signature=kyNGDVSXItIbqXY9FKkdnrCnKrs%3D)
+![](//sml-myoss.oss-cn-beijing.aliyuncs.com/blog/word_img/20180702231814.png)
 
 访问器属性：
 
@@ -104,7 +104,7 @@ book.year = 2005;
 alert(book.edition);
 ```
 
-### 2.2 方法
+## 2.2 方法
 * Object.prototype.toString() 返回对象的字符串表示
 * Object.prototype.hasOwnProperty() 返回一个布尔值，表示某个对象是否含有指定的属性，而且此属性非原型链继承，也就是说不会检查原型链上的属性
 * Object.prototype.isPrototypeOf() 返回一个布尔值，表示指定的对象是否在本对象的原型链中
@@ -127,7 +127,7 @@ alert(book.edition);
 * Object.setPrototypeOf(obj, prototype) 将一个指定的对象的原型设置为另一个对象或者null
 * Object.values 返回一个包含指定对象所有的可枚举属性值的数组，数组中的值顺序和使用for…in循环遍历的顺序一样
 
-### 2.3 应用
+## 2.3 应用
 如何检测某个属性是否在对象中？
 * in运算符，判断对象是否包含某个属性，会从对象的实例属性、继承属性里进行检测
 ```js
@@ -257,7 +257,7 @@ console.log(isEquivalent({a:1},{a:1}));
 深拷贝这是创建了一个新的对象，然后把旧的对象中的属性和方法拷贝到新的对象中，拷贝后 a !== b 
 深拷贝的实现由很多例子，例如jQuery的extend和lodash中的cloneDeep, clone。jQuery可以使用$.extend(true, {}, ...)来实现深拷贝, 但是jQuery无法复制JSON对象之外的对象，例如ES6引入的Map、Set等。而lodash加入的大量的代码来实现ES6新引入的标准对象 
 
-## 三、对象分为函数对象和普通对象
+# 三、对象分为函数对象和普通对象
 ** 什么是函数对象和普通对象？**
 Object、Function、Array、Date等js的内置对象都是函数对象
 ```js
@@ -309,7 +309,7 @@ const e2 = e1();
 虽然不能直接`new e1`
 但是可以`new e1.constructor();`哈哈哈哈
 
-## 四、理解prototype和proto
+# 四、理解prototype和proto
 | 对象类型 | prototype | proto |
 | - | - |
 | 函数对象 | Yes | Yes |
@@ -400,7 +400,7 @@ ES5 中所有内置对象的[[Class]]属性的值是由规范定义的，但是 
 `Array.isArray()` 
 部分浏览器中不兼容
 
-## 五、理解原型与原型链
+# 五、理解原型与原型链
 其实上一节中的`prototype`和`proto`就是为了构建原型链而存在的，之前也或多或少的说到了原型链这个概念。
 
 看下面的代码:
@@ -455,3 +455,328 @@ sijing.__proto__.__proto__.__proto__ null，// 不是对象，到头啦
 * 构造函数首字母必须大写，用来区分普通函数，内部使用`this`指针，指向要生成的实例对象，通过`new`来生成实例对象。 
 * 实例就是通过`new`一个构造函数产生的对象，它有一个属性`[[prototype]]`指向原型 
 * 原型中有一个属性`[[constructor]]`，指向构造函数
+
+# 六、与原型链相关的方法
+## 6.1 hasOwnProperty
+`Object.hasOwnProperty()`返回一个布尔值，表示某个对象的实例是否含有指定的属性，而且此属性非原型链继承。用来判断属性是来自实例属性还是原型属性。类似还有`in`操作符，`in`操作符只要属性存在，不管实在实例中还是原型中，就会返回`true`。同时使用`in`和`hasOwnProperty`就可以判断属性是在原型中还是在实例中
+```js
+const Dogs = function (age) {
+    this.age = age
+}
+
+Dogs.prototype.getAge = function() {
+    return this.age;
+}
+
+const sijing = new Dogs(14);
+sijing.hasOwnProperty('age');
+```
+
+## 6.2 isPrototypeOf
+`Object.prototype.isPrototypeOf()`返回一个布尔值，表示指定的对象是否在本对象的原型链中
+```js
+const Dogs = function (age) {
+    this.age = age
+}
+
+Dogs.prototype.getAge = function() {
+    return this.age;
+}
+
+const sijing = new Dogs(11);
+Object.prototype.isPrototypeOf(Dogs);
+Dogs.prototype.isPrototypeOf(sijing);
+```
+
+## 6.3 getPrototypeOf
+`Object.getPrototypeOf`返回该对象的原型
+```js
+const Dogs = function (age) {
+    this.age = age
+}
+
+Dogs.prototype.getAge = function() {
+    return this.age;
+}
+
+const sijing = new Dogs(11);
+sijing.__proto__ === Object.getPrototypeOf(sijing) 
+```
+
+# 七、ES5 对象继承
+## 7.1 原型继承
+原型继承就是利用** 原型链 **来实现继承
+```js
+function SuperType() {
+    this.supername = 'super';
+}
+
+SuperType.prototype.getSuperName= function(){
+    return this.supername;
+}
+
+function SubType () {
+    this.subname='subname';
+}
+
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubName = function (){
+    return this.subname;
+}
+
+var instance1 = new SubType();
+console.log(instance1.getSubName());
+console.log(instance1.getSuperName());
+```
+
+需要注意的地方： 
+实现原型继承的时候不要使用对象字面量创建原型方法，因为这样做，会重写原型链。
+```js
+function SuperType() {
+    this.supername = 'super';
+}
+
+SuperType.prototype.getSuperName= function(){
+    return this.supername;
+}
+
+function SubType () {
+    this.subname='subname';
+}
+
+SubType.prototype = new SuperType();
+
+SubType.prototype =  {
+    getSubName: function (){
+        return this.subname;
+    }
+}
+
+var instance1 = new SubType();
+console.log(instance1.getSubName());
+console.log(instance1.getSuperName()); // error
+```
+上面使用`SubType.prototype = {...}`之后，`SubType`的原型就是`Object`了，而不是`SuperType`了。
+
+优点：原型定义的属性和方法可以复用 
+缺点： 
+1. 引用类型的原型属性会被所有实例共享 
+2. 创建子对象时，不能向父对象的构造函数中传递参数
+
+## 7.2 构造函数继承
+```js
+var a = {
+    name: 'a',
+};
+
+var name = 'window';
+
+var getName = function(){
+    console.log(this.name);
+}
+
+getName() // window
+getName.call(a) // a
+```
+执行`getName()`时，函数体的`this`指向`window`，而执行`getName.call(a)`时，函数体的`this`指向的是`a`对象，所以就可以理解啦。接下来我们看如何实现构造函数继承
+```js
+function SuperType () {
+    this.colors = ['red', 'green'];
+}
+
+function SubType () {
+    // 继承SuperType
+    SuperType.call(this);
+}
+
+var instance1 = new SubType();
+instance1.colors.push('blue'); 
+console.log(instance1.colors); // red, green, blue
+
+var instance2 = new SubType();
+console.log(instance2.colors); // red, green
+```
+`SuperType.call(this)`这一行代码，实际上意思是在`SubType`的实例初始化过程中，调用了`SuperType`的构造函数，因此`SubType`的每个实例都有`colors`这个属性
+
+优点：子对象可以传递参数给父对象。
+```js
+function SuperType(name) {
+    this.name = name;
+}
+function SubType(name, age) {
+    name = name || 'hello';
+    SuperType.call(this, name);
+    this.age = age;
+}
+
+var instance1 = new SubType('scofield', 28);
+console.log(instance1.name); //
+console.log(instance1.age); //
+```
+需要注意的地方是在调用父对象的构造函数之后，再给子类型中的定义属性，否则会被重写。
+
+缺点：方法都需要在构造函数中定义，难以做到函数的复用，而且在父对象的原型上定义的方法，对于子类型是不可见的。 ??? 为什么不可见
+```js
+function SuperType(name) {
+    this.name = name;
+}
+
+SuperType.prototype.getName = function() {
+    return this.name;
+}
+
+SuperType.prototype.prefix = function() {
+    return 'prefix';
+}
+
+function SubType(name) {
+    SuperType.call(this, name);
+}
+
+var instance1 = new SubType('scofield');
+console.log(instance1.name);
+console.log(instance1.prefix);
+console.log(instance1.getName()); // Uncaught TypeError: instance1.getName is not a function
+```
+
+## 7.3 组合式继承
+** 组合式继承 ** 顾名思义，就是组合两种模式实现JavaScript的继承，借助 ** 原型链 ** 和 ** 构造函数 ** 来实现。这样子在原型上定义方法实现了函数的复用，而且能够保证每个实例都有自己的属性。
+```js
+function SuperType (name) {
+    this.name = name;
+    this.con = [];
+}
+
+SuperType.prototype.getName = function() {
+    return this.name;
+}
+
+function SubType (name, age) {
+    SuperType.call(this, name);
+    this.age = age;
+}
+
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
+SubType.prototype.getAge = function() {
+    return this.age;
+};
+
+var instance1 = new SubType('li', 18);
+instance1.con.push('test1');
+console.log(instance1.con); // test1
+console.log(instance1.getAge()); // 18
+console.log(instance1.getName()); // li
+
+var instance2 = new SubType('hang', 18);
+console.log(instance1.con); // test1
+console.log(instance1.getAge()); // 18
+console.log(instance1.getName()); // hang
+```
+优点：弥补了 ** 原型继承 **和 ** 构造函数 ** 的缺点 
+缺点：父类构造函数调用了两次
+
+## 7.4 原型式继承
+原型式继承并没有使用严格意义上的构造函数，借助原型可以基于已有的对象创建新的对象，例如：
+```js
+function createObject(o) {
+    function newOrient () {};
+    newOrient.prototype = o;
+    return new newOrient();
+}
+```
+简单来说`createObject`函数，对传入的`o`对象进行的一次浅拷贝。在ES5中新增加了一个方法`Object.create()`, 它的作用和`createObject`是一样的，但是只支持IE9+。
+```js
+var Dogs = {
+    name: 'jingmao',
+    age: 1
+}
+
+var BigDogs = Object.create(Dogs);
+BigDogs.name= 'bigjingmao';
+BigDogs.size = 'big';
+console.log(BigDogs.age);
+```
+其中`Object.create`还支持传入第二个参数，参数与`Object.defineProperties()`方法的格式相同，并且会覆盖原型上的同名属性。
+
+## 7.5 寄生式继承
+**寄生式继承** 其实和 **原型式继承** 很类似，区别在于，**寄生式继承** 创建的一个函数把所有的事情做完了，例如给新的对象增加属性和方法。
+```js
+function createAnother(o) {
+    var clone = Object.create(o);
+    clone.size = 'big';
+    return clone;
+}
+
+var Dogs = {
+    name: 'jingmao',
+    age: 1
+}
+
+var BigDogs = createAnother(Dogs);
+console.log(BigDogs.size);
+```
+
+## 7.6 寄生组合式继承
+到最后一个了，看看我们之前遗留的问题: 
+**组合继承** 会调用两次父对象的构造函数，并且父类型的属性存在两组，一组在实例上，一组在SubType的原型上。解决这个问题的方法就是 **寄生组合式继承**。
+```js
+function inheritPrototype(subType, superType){ 
+    // 继承父类的原型
+    var prototype = Object.create(superType.prototype);
+    // 重写被污染的construct
+    prototype.constructor = subType; 
+    // 重写子类的原型  
+    subType.prototype = prototype; 
+}
+```
+这个函数就是 **寄生组合式继承** 的最简单的实现方式
+```js
+function SuperType(name){ 
+    this.name = name; 
+    this.colors = ["red", "blue", "green"];
+}
+
+SuperType.prototype.sayName = function(){ 
+    alert(this.name); 
+};
+
+function SubType(name, age) {
+    SuperType.call(this, name);
+    this.age = age;
+}
+
+inheritPrototype(SubType, SuperType);
+
+SubType.prototype.sayAge = function(){ 
+    alert(this.age); 
+};
+
+var instance1 = new SubType('hello', 18);
+
+instance1.__proto__.constructor == SubType
+```
+可以看到 
+1. 子类继承了父类的属性和方法，同时属性没有创建在原型链上，因此多个子类不会共享同一个属性。 
+2. 子类可以动态传递参数给父类 
+3. 父类构造函数只执行了一次
+
+但是还有一个问题： 
+子类如果在原型上添加方法，必须要在继承之后添加，否则会覆盖原来原型上的方法。但是如果这两个类是已存在的类，就不行了
+
+优化一下：
+```js
+function inheritPrototype(subType, superType){ 
+    // 继承父类的原型
+    var prototype = Object.create(superType.prototype);
+    // 重写被污染的construct
+    prototype.constructor = subType; 
+    // 重写子类的原型  
+    subType.prototype = Object.assign(prototype, subType.prototype); 
+}
+```
+虽然通过`Object.assign`来进行`copy`解决了覆盖原型类型的方法的问题，但是`Object.assign`只能够拷贝可枚举的方法，而且如果子类本身就继承了一个类，这个办法也不行。
+
+# 八、ES6 实现继承
+我们知道了ES5中可以通过原型链来实现继承，ES6提供了extends关键字来实现继承，这相对而言更加清晰和方便，首先看看ES6 Class的语法，此处参考[http://es6.ruanyifeng.com/#docs/class](http://es6.ruanyifeng.com/#docs/class)
