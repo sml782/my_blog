@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JavaScript中的闭包 | Technology of heaven | Personal homepage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="闭包">
+    <meta name="description" content="作用域先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。 全局作用域1234var num1 = 1;function fun1 ()&amp;#123;    num2 = 2;&amp;#125; 以上三个对象 num1, num2 和 fu">
+<meta name="keywords" content="闭包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中的闭包">
+<meta property="og:url" content="http://blog.sgoldl.top/2018/07/01/js_closure/index.html">
+<meta property="og:site_name" content="Technology of heaven">
+<meta property="og:description" content="作用域先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。 全局作用域1234var num1 = 1;function fun1 ()&amp;#123;    num2 = 2;&amp;#125; 以上三个对象 num1, num2 和 fu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-01T14:06:20.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中的闭包">
+<meta name="twitter:description" content="作用域先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。 全局作用域1234var num1 = 1;function fun1 ()&amp;#123;    num2 = 2;&amp;#125; 以上三个对象 num1, num2 和 fu">
+    
+        <link rel="alternate" type="application/atom+xml" title="Technology of heaven" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">亖 巠</h5>
+          <a href="mailto:782015430@qq.com" title="782015430@qq.com" class="mail">782015430@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/sml782" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript中的闭包</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript中的闭包</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-01T08:04:02.000Z" itemprop="datePublished" class="page-time">
+  2018-07-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS/">JS</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#作用域"><span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#全局作用域"><span class="post-toc-text">全局作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#局部作用域"><span class="post-toc-text">局部作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域链"><span class="post-toc-text">作用域链</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#闭包"><span class="post-toc-text">闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的特点："><span class="post-toc-text">闭包的特点：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的作用"><span class="post-toc-text">闭包的作用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的用途"><span class="post-toc-text">闭包的用途</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js_closure"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript中的闭包</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-01 16:04:02" datetime="2018-07-01T08:04:02.000Z"  itemprop="datePublished">2018-07-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS/">JS</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。<br>在JavaScript中，变量的作用域有全局作用域和局部作用域两种。</p>
+<h2 id="全局作用域"><a href="#全局作用域" class="headerlink" title="全局作用域"></a>全局作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    num2 = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上三个对象 <code>num1</code>, <code>num2</code> 和 <code>fun1</code> 均是全局作用域，这里要注意的是 <strong> 末定义直接赋值的变量自动声明为拥有全局作用域 </strong>；</p>
+<h2 id="局部作用域"><a href="#局部作用域" class="headerlink" title="局部作用域"></a>局部作用域</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrap</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="string">"我被wrap包裹起来了，wrap外部无法直接访问到我"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">innerFun</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//外部无法访问我</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当代码在一个环境中执行时，会创建变量对象的一个作用域链。<br>[{当前环境的变量对象}，{外层变量对象}，{外层的外层的变量对象}, {window全局变量对象}] 每个数组单元就是作用域链的一块，这个块就是我们的变量对象。<br>作用于链的前端，始终都是当前执行的代码所在环境的变量对象。全局执行环境的变量对象也始终都是链的最后一个对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">12</span>;</span><br><span class="line">    fun(a);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="number">8</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(a + b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<p>再来看上面这个简单的例子，我们可以先思考一下，每个执行环境下的变量对象都是什么？ 这两个函数它们的变量对象分别都是什么？</p>
+<p>我们以fun为例，当我们调用它时，会创建一个包含 <code>arguments</code>，<code>a</code>，<code>b</code>的 <strong> 活动对象 </strong>，对于函数而言，在执行的最开始阶段它的活动对象里只包含一个变量，即<code>arguments</code>(当执行流进入，再创建其他的活动对象)。</p>
+<p>在活动对象中，它依然表示当前参数集合。对于函数的活动对象，我们可以想象成两部分，一个是固定的<code>arguments</code>对象，另一部分是函数中的局部变量。而在此例中，a和b都被算入是局部变量中，即便a已经包含在了<code>arguments中</code>，但他还是属于。</p>
+<p>有没有发现在环境栈中，所有的执行环境都可以组成相对应的作用域链。我们可以在环境栈中非常直观的拼接成一个相对作用域链。</p>
+<p>下面我们大致说下这段代码的执行流程：</p>
+<ol>
+<li>在创建<code>foo</code>的时候，作用域链已经预先包含了一个全局对象，并保存在内部属性<code>[[ Scope ]]</code>当中。</li>
+<li>执行<code>foo</code>函数，创建执行环境与活动对象后，取出函数的内部属性<code>[[Scope]]</code>构建当前环境的作用域链(取出后，只有全局变量对象，然后此时追加了一个它自己的活动对象)。</li>
+<li>执行过程中遇到了<code>fun</code>，从而继续对<code>fun</code>使用上一步的操作。</li>
+<li><code>fun</code>执行结束，移出环境栈。<code>foo</code>因此也执行完毕，继续移出。</li>
+<li>javscript 监听到<code>foo</code>没有被任何变量所引用，开始实施垃圾回收机制，清空占用内存。</li>
+</ol>
+<p>作用域链其实就是引用了当前执行环境的变量对象的指针列表，它只是引用，但不是包含，因为它的形状像链条，它的执行过程也非常符合，所以我们都称之为 <strong> 作用域链 </strong>，而当我们弄懂了这其中的奥秘，就可以抛开这种形式上的束缚，从原理上出发。</p>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>闭包，官方对闭包的解释是：一个拥有许多变量和绑定了这些变量的环境的表达式（通常是一个函数），因而这些变量也是该表达式的一部分。</p>
+<h2 id="闭包的特点："><a href="#闭包的特点：" class="headerlink" title="闭包的特点："></a>闭包的特点：</h2><ol>
+<li>作为一个函数变量的一个引用，当函数返回时，其处于激活状态。</li>
+<li>一个闭包就是当一个函数返回时，一个没有释放资源的栈区。<br>其实就是 <strong> 有权访问另一个函数作用域中的变量的函数 </strong>。简单说就是，假设函数a是定义在函数b中的函数，那么函数a就是一个闭包。正常情况下，在函数的外部访问不到函数内部的变量，但有了闭包就可以间接的实现访问内部变量的需要。也就是说，<strong> 闭包是连接函数内部和外部的桥梁 </strong>。<h2 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h2></li>
+<li>访问函数内部的变量。</li>
+<li>让被引用的变量值始终保持在内存中。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(++a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fn2 = fn1();</span><br><span class="line"></span><br><span class="line">fn2();        <span class="comment">//输出2</span></span><br><span class="line"></span><br><span class="line">fn2();        <span class="comment">//输出3</span></span><br></pre></td></tr></table></figure>
+<p>在这段代码中，fn1中的闭包函数被当作结果返回，在闭包中的引用的变量a因为被引用而没有被清除，一直保存在内存当中，所以执行fn2的时候会输出不断增加的结果：2和3。</p>
+<p>当闭包中引用了函数中的变量时，那么，这个变量就会保存在内存中。也就是上面提到的闭包的第二个作用。之所以为这样，是因为JavaScript的回收机制。</p>
+<p>基本所有浏览器都是使用“标记清除”的方式回收内存。也就是说，当变量进入执行环境的时候（在函数中声明一个变量），就给变量添加标记，而当函数执行完的，变量不再被引用的时候，再添加删除的标记，垃圾收集器就会自动清楚这个变量占有的内存。但在闭包中引用了函数中的变量，而闭包又被当作结果返回时，闭包中的因为被引用就不会被清除</p>
+<h2 id="闭包的用途"><a href="#闭包的用途" class="headerlink" title="闭包的用途"></a>闭包的用途</h2><ol>
+<li>匿名自执行函数<br>我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，<br>比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。<br>除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，<br>比如UI的初始化，那么我们可以使用闭包：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data= &#123;    </span><br><span class="line">    table : [],    </span><br><span class="line">    tree : &#123;&#125;    </span><br><span class="line">&#125;;    </span><br><span class="line">     </span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">dm</span>)</span>&#123;    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dm.table.rows; i++)&#123;    </span><br><span class="line">        <span class="keyword">var</span> row = dm.table.rows[i];    </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; row.cells; i++)&#123;    </span><br><span class="line">            drawCell(i, j);    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;    </span><br><span class="line">       </span><br><span class="line">&#125;)(data);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象。</p>
+<ol start="2">
+<li>结果缓存<br>我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，</li>
+</ol>
+<p>那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> CachedSearchBox = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="keyword">var</span> cache = &#123;&#125;,    </span><br><span class="line">        count = [];    </span><br><span class="line">    <span class="keyword">return</span> &#123;    </span><br><span class="line">        attachSearchBox : <span class="function"><span class="keyword">function</span>(<span class="params">dsid</span>)</span>&#123;    </span><br><span class="line">            <span class="keyword">if</span>(dsid <span class="keyword">in</span> cache)&#123;<span class="comment">//如果结果在缓存中    </span></span><br><span class="line">                <span class="keyword">return</span> cache[dsid];<span class="comment">//直接返回缓存中的对象    </span></span><br><span class="line">            &#125;    </span><br><span class="line">            <span class="keyword">var</span> fsb = <span class="keyword">new</span> uikit.webctrl.SearchBox(dsid);<span class="comment">//新建    </span></span><br><span class="line">            cache[dsid] = fsb;<span class="comment">//更新缓存    </span></span><br><span class="line">            <span class="keyword">if</span>(count.length &gt; <span class="number">100</span>)&#123;<span class="comment">//保正缓存的大小&lt;=100    </span></span><br><span class="line">                <span class="keyword">delete</span> cache[count.shift()];    </span><br><span class="line">            &#125;    </span><br><span class="line">            <span class="keyword">return</span> fsb;          </span><br><span class="line">        &#125;,    </span><br><span class="line">     </span><br><span class="line">        clearSearchBox : <span class="function"><span class="keyword">function</span>(<span class="params">dsid</span>)</span>&#123;    </span><br><span class="line">            <span class="keyword">if</span>(dsid <span class="keyword">in</span> cache)&#123;    </span><br><span class="line">                cache[dsid].clearSelection();      </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;;    </span><br><span class="line">&#125;)();    </span><br><span class="line">     </span><br><span class="line">CachedSearchBox.attachSearchBox(<span class="string">"input"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这样我们在第二次调用的时候，就会从缓存中读取到该对象。</p>
+<ol start="3">
+<li><p>封装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="comment">//变量作用域为函数内部，外部无法访问    </span></span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"default"</span>;       </span><br><span class="line">       </span><br><span class="line">    <span class="keyword">return</span> &#123;    </span><br><span class="line">        getName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">            <span class="keyword">return</span> name;    </span><br><span class="line">        &#125;,    </span><br><span class="line">        setName : <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;    </span><br><span class="line">            name = newName;    </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;();    </span><br><span class="line">     </span><br><span class="line">print(person.name);<span class="comment">//直接访问，结果为undefined    </span></span><br><span class="line">print(person.getName());    </span><br><span class="line">person.setName(<span class="string">"abruzzi"</span>);    </span><br><span class="line">print(person.getName());    </span><br><span class="line">   </span><br><span class="line">得到结果如下：  </span><br><span class="line">   </span><br><span class="line"><span class="comment">// undefined  </span></span><br><span class="line"><span class="comment">// default  </span></span><br><span class="line"><span class="comment">// abruzzi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现类和继承</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"default"</span>;       </span><br><span class="line">       </span><br><span class="line">    <span class="keyword">return</span> &#123;    </span><br><span class="line">       getName : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;    </span><br><span class="line">           <span class="keyword">return</span> name;    </span><br><span class="line">       &#125;,    </span><br><span class="line">       setName : <span class="function"><span class="keyword">function</span>(<span class="params">newName</span>)</span>&#123;    </span><br><span class="line">           name = newName;    </span><br><span class="line">       &#125;    </span><br><span class="line">    &#125;    </span><br><span class="line">&#125;;   </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">p.setName(<span class="string">"Tom"</span>);</span><br><span class="line">alert(p.getName());</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Jack = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="comment">//继承自Person</span></span><br><span class="line">Jack.prototype = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="comment">//添加私有方法</span></span><br><span class="line">Jack.prototype.Say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Hello,my name is Jack"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> j = <span class="keyword">new</span> Jack();</span><br><span class="line">j.setName(<span class="string">"Jack"</span>);</span><br><span class="line">j.Say();</span><br><span class="line">alert(j.getName());</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>我们定义了<code>Person</code>，它就像一个类，我们<code>new</code>一个<code>Person</code>对象，访问它的方法。</p>
+<p>下面我们定义了<code>Jack</code>，继承<code>Person</code>，并添加自己的方法。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-01T14:06:20.990Z" itemprop="dateUpdated">2018-07-01 22:06:20</time>
+</span><br>
+
+
+        
+        感谢阅读。
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.sgoldl.top">
+            <img src="/img/avatar.jpg" alt="亖 巠">
+            亖 巠
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闭包/">闭包</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sgoldl.top/2018/07/01/js_closure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.sgoldl.top/2018/07/01/js_closure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/02/oop_extend/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JavaScript面向对象程序设计</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/01/blog/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">为什么要写博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "HBR3Tf4rCqfgE3DJ9A1bnPhh-gzGzoHsz",
+            appKey: "0QXjubYv4mb61IK7LIIobjKP",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        感谢赏赐~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>亖 巠 &copy; 2017 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">浙ICP备18025901号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sgoldl.top/2018/07/01/js_closure/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.sgoldl.top/2018/07/01/js_closure/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQW7DMAwEwPz/0ynQa2B3l3IKWB6dgsCQOTkwlMjXK17v3/X5zdH3n898rvPnX99YGBgYt2XkLzt/5nzP/EcZvhcDA+MBjPMke54oz/eZ5ck8NgwMDIw8RSYpOHkjBgYGxjojP7gm3yS7YWBgYFx1KZYD8kPvV87iGBgYN2S0jYH//PzF/gYGBsZNGO9yzRoJbZFXR4WBgbE1IynLZlMN+dBGO2ZRVLgYGBhbMJJQ8kKtHapYLxb/+N/AwMDYgrHeXDxH5mVlyz5MuxgYGNsx2i1WAm1TbbEDBgbG1ox6oKEcvJgl63Z/DAyMJzDWi7lZ4bjS4PxjfwwMjO0YeRDtSFY7XlY0LI9KQwwMjO0Y+YVXEsQKLPk3iGZGMDAwNmXMrtjyoa622dkmaAwMjOcw2mGv9QGyNr0e/twYGBgPYCQBzdJlm4hnpSQGBsYzGcVd3fKaHVwxMDCezLhqYKJtDESDX0c/IgYGxtaM4kqrJLV75qMbh/tgYGBsylh/QRtEfujNC0cMDIxnMpJkNysl22NtVDhiYGBszZhd/bfjXMkRdAWJgYGxN+NdrgSQH2XbFH+4GwYGxtaMttGYf85DbI+4s6ENDAyMuzPaJLtyZdam5rqFiYGBsTWjTbIrYV17GYeBgYFRTG0stDxnaR0DAwNj1si86rotjwcDA+M5jPVmwOwom4SYRIiBgbE3o20MfOP5WVk53BoDA+NOjB8RlhQZEK6ibgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
