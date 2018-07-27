@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Technology of heaven
-subtitle: Personal homepage
+title: 亖 巠 的博客
+subtitle: 人在码在，为码？为码！为码。
 description: 亖 巠 的个人博客。
 keywords: 个人博客, 博客
 author: 亖 巠
@@ -86,4 +86,8 @@ deploy:
   delete: true
   verbose: true
   ignore_errors: false
+#   type: git
+#   repo: git@github.com:sml782/my_blog.git
+#   name: sml782
+#   email: sml782@163.com
 

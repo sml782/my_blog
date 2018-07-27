@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>JS简单实现防抖和节流 | 亖 巠 的博客 | 人在码在，为码？为码！为码。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="防抖,节流">
+    <meta name="description" content="主要针对于时间频繁调用事件而做的性能优化">
+<meta name="keywords" content="防抖,节流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS简单实现防抖和节流">
+<meta property="og:url" content="http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/index.html">
+<meta property="og:site_name" content="亖 巠 的博客">
+<meta property="og:description" content="主要针对于时间频繁调用事件而做的性能优化">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-27T11:09:34.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS简单实现防抖和节流">
+<meta name="twitter:description" content="主要针对于时间频繁调用事件而做的性能优化">
+    
+        <link rel="alternate" type="application/atom+xml" title="亖 巠 的博客" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">亖 巠</h5>
+          <a href="mailto:782015430@qq.com" title="782015430@qq.com" class="mail">782015430@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/sml782" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JS简单实现防抖和节流</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JS简单实现防抖和节流</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-27T09:35:12.000Z" itemprop="datePublished" class="page-time">
+  2018-07-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS/">JS</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、什么是防抖和节流"><span class="post-toc-text">一、什么是防抖和节流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-防抖-debounce"><span class="post-toc-text">1. 防抖 - debounce</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-节流-throttle"><span class="post-toc-text">2. 节流 - throttle</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js_debounce_throttle"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JS简单实现防抖和节流</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-27 17:35:12" datetime="2018-07-27T09:35:12.000Z"  itemprop="datePublished">2018-07-27</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/JS/">JS</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="一、什么是防抖和节流"><a href="#一、什么是防抖和节流" class="headerlink" title="一、什么是防抖和节流"></a>一、什么是防抖和节流</h1><p><strong>Ps</strong>: 比如搜索框，用户在输入的时候使用<code>change</code>事件去调用搜索，如果用户每一次输入都去搜索的话，那得消耗多大的服务器资源，即使你的服务器资源很强大，也不带这么玩的。</p>
+<h2 id="1-防抖-debounce"><a href="#1-防抖-debounce" class="headerlink" title="1. 防抖 - debounce"></a>1. 防抖 - debounce</h2><p>其中一种解决方案就是每次用户停止输入后，延迟超过<code>500ms</code>时，才去搜索此时的<code>String</code>，这就是防抖。</p>
+<ul>
+<li>原理：将若干个函数调用合成为一次，并在给定时间过去之后仅被调用一次。</li>
+<li>代码实现：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 维护一个 timer，用来记录当前执行函数状态</span></span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 通过 ‘this’ 和 ‘arguments’ 获取函数的作用域和变量</span></span><br><span class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="comment">// 清理掉正在执行的函数，并重新执行</span></span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      fn.apply(context, args);</span><br><span class="line">    &#125;, delay);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> flag = <span class="number">0</span>; <span class="comment">// 记录当前函数调用次数</span></span><br><span class="line"><span class="comment">// 当用户滚动时被调用的函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  flag++;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Number of calls: %d'</span>, flag);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 debounce 中包装我们的函数，过 2 秒触发一次</span></span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'scroll'</span>, debounce(foo, <span class="number">2000</span>));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li><code>debounce</code>函数封装后，返回内部函数</li>
+<li>每一次事件被触发，都会清除当前的<code>timer</code>然后重新设置超时并调用。这会导致每一次高频事件都会取消前一次的超时调用，导致事件处理程序不能被触发</li>
+<li>只有当高频事件停止，最后一次事件触发的超时调用才能在<code>delay</code>时间后执行</li>
+</ol>
+</blockquote>
+<h2 id="2-节流-throttle"><a href="#2-节流-throttle" class="headerlink" title="2. 节流 - throttle"></a>2. 节流 - throttle</h2><p>另一种解决方案比 <em>防抖</em> 要宽松些，这时我们不想用户一味的输入，而是给用户一些搜索提示，所以在当中限制每过<code>500ms</code>就查询一次此时的<code>String</code>，这就是节流。</p>
+<ul>
+<li>原理：节流函数不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数。</li>
+<li>代码实现有两种，一种是时间戳，另一种是定时器<br>1）时间戳实现：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, delay</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> prev = <span class="built_in">Date</span>.now();</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> args    = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">const</span> now     = <span class="built_in">Date</span>.now();</span><br><span class="line">    <span class="keyword">if</span>(now - prev &gt;= delay)&#123;</span><br><span class="line">      func.apply(context, args);</span><br><span class="line">      prev = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当高频事件触发时，第一次应该会立即执行（给事件绑定函数与真正触发事件的间隔如果大于<code>delay</code>的话），而后再怎么频繁触发事件，也都是会每<code>delay</code>秒才执行一次。而当最后一次事件触发完毕后，事件也不会再被执行了。</p>
+</blockquote>
+<p>  2）定时器实现：<br>  当触发事件的时候，我们设置一个定时器，再触发事件的时候，如果定时器存在，就不执行；直到<code>delay</code>秒后，定时器执行执行函数，清空定时器，这样就可以设置下个定时器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fucntion throttle(func, delay)&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> funtion()&#123;</span><br><span class="line">    <span class="keyword">let</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">let</span> args    = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">if</span>(!timer)&#123;</span><br><span class="line">      timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        func.apply(context, args);</span><br><span class="line">        timer = <span class="literal">null</span>;</span><br><span class="line">      &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当第一次触发事件时，肯定不会立即执行函数，而是在<code>delay</code>秒后才执行。<br>之后连续不断触发事件，也会每<code>delay</code>秒执行一次。<br>当最后一次停止触发后，由于定时器的<code>delay</code>延迟，可能还会执行一次函数。</p>
+</blockquote>
+<p>  3）综合使用时间戳与定时器，完成一个事件触发时立即执行，触发完毕还能执行一次的节流函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, delay</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timer = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">let</span> startTime = <span class="built_in">Date</span>.now();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> curTime = <span class="built_in">Date</span>.now();</span><br><span class="line">    <span class="keyword">let</span> remaining = delay - (curTime - startTime);</span><br><span class="line">    <span class="keyword">const</span> context = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">const</span> args = <span class="built_in">arguments</span>;</span><br><span class="line"></span><br><span class="line">    clearTimeout(timer);</span><br><span class="line">    <span class="keyword">if</span>(remaining &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">      func.apply(context,args);</span><br><span class="line">      startTime = <span class="built_in">Date</span>.now();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      timer = setTimeout(func, remaining);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要在每个<code>delay</code>时间中一定会执行一次函数，因此在节流函数内部使用开始时间、当前时间与<code>delay</code>来计算<code>remaining</code>，当<code>remaining &lt;= 0</code>时表示该执行函数了，如果还没到时间的话就设定在<code>remaining</code>时间后再触发。当然在<code>remaining</code>这段时间中如果又一次发生事件，那么会取消当前的计时器，并重新计算一个<code>remaining</code>来判断当前状态。</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-27T11:09:34.663Z" itemprop="dateUpdated">2018-07-27 19:09:34</time>
+</span><br>
+
+
+        
+        感谢阅读。
+        
+    </div>
+    
+    <footer>
+        <a href="http://blog.sgoldl.top">
+            <img src="/img/avatar.jpg" alt="亖 巠">
+            亖 巠
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/节流/">节流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/防抖/">防抖</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&title=《JS简单实现防抖和节流》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&title=《JS简单实现防抖和节流》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS简单实现防抖和节流》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&via=http://blog.sgoldl.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/02/oop_extend/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">JavaScript面向对象程序设计</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "HBR3Tf4rCqfgE3DJ9A1bnPhh-gzGzoHsz",
+            appKey: "0QXjubYv4mb61IK7LIIobjKP",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        感谢赏赐~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>亖 巠 &copy; 2017 - 2018</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">浙ICP备18025901号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&title=《JS简单实现防抖和节流》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&title=《JS简单实现防抖和节流》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JS简单实现防抖和节流》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/&via=http://blog.sgoldl.top" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.sgoldl.top/2018/07/27/js_debounce_throttle/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQY7jMAwEwPn/p73AnvawTrqpZABLpVMwnlgpHQiK5M9PvK6/K//L9c+6+//kWx9eGBgYj2VcL9fdZndveP2D7t6fwN58FwMD4wDGSijMg28SlNswjYGBgbFCbUP2bF8MDAyMJDgmqdunwBgYGCczkkvs681eb5l/9+t3cQwMjAcy2sbAb37+Yn8DAwPjIYyrXEm6ljydJZq3b8DAwNiakQ9SzJK2/PPsaT0PgoGB8UBGPhKRFNGSwNqOaET7YmBgHMBIQu0sBYwK+uu7Y2BgbM1ow24eZFfAwyYEBgbGpoyk7JWT2iGJWfD9zxswMDAOYOTl/ra41obs4VUWAwPjYEb+dFZo+1haiYGBsTVjfbbqU7BZqMXAwDiH0bYq84tu2wptxz4wMDBOYKxfQfNgupJuFp1YDAyM7RhJcW1lkCIHr5TzMDAwMGYNgLxYNru4YmBgnMnIL7Ft+FsJtW2Ix8DA2JWRvLot5c8qf20Jr+5LYGBgPJCRX1bzhsFspCwfYI3OEgMDYzvGrEmw0tRsmwRvDhQDA2Nrxqx8P2sStAll3QTFwMDYlHGVqx16mKWA7VFiYGDszchXElhnLcz2ToqBgXEmY33Aoi3AzQLum7PHwMA4gNEG07pTurzeHAEGBgZGXHqbtQ3axmc0M4KBgXEwI0kKV9oJ7ZFhYGCcw5gFzTaJbBsA+W/AwMDYm7EyqZGnfe0I2lcwGBgYz2P8AcZYddMtKk4CAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

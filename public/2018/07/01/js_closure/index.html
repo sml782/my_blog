@@ -14,7 +14,7 @@
     
     
     
-    <title>JavaScript中的闭包 | Technology of heaven | Personal homepage</title>
+    <title>JavaScript中的闭包 | 亖 巠 的博客 | 人在码在，为码？为码！为码。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -26,7 +26,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript中的闭包">
 <meta property="og:url" content="http://blog.sgoldl.top/2018/07/01/js_closure/index.html">
-<meta property="og:site_name" content="Technology of heaven">
+<meta property="og:site_name" content="亖 巠 的博客">
 <meta property="og:description" content="作用域先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。 全局作用域1234var num1 = 1;function fun1 ()&amp;#123;    num2 = 2;&amp;#125; 以上三个对象 num1, num2 和 fu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-07-01T14:06:20.990Z">
@@ -34,7 +34,7 @@
 <meta name="twitter:title" content="JavaScript中的闭包">
 <meta name="twitter:description" content="作用域先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。在JavaScript中，变量的作用域有全局作用域和局部作用域两种。 全局作用域1234var num1 = 1;function fun1 ()&amp;#123;    num2 = 2;&amp;#125; 以上三个对象 num1, num2 和 fu">
     
-        <link rel="alternate" type="application/atom+xml" title="Technology of heaven" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="亖 巠 的博客" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -160,7 +160,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#作用域"><span class="post-toc-number">1.</span> <span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#全局作用域"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">全局作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#局部作用域"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">局部作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域链"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">作用域链</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#闭包"><span class="post-toc-number">2.</span> <span class="post-toc-text">闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的特点："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">闭包的特点：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的作用"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">闭包的作用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的用途"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">闭包的用途</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#作用域"><span class="post-toc-text">作用域</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#全局作用域"><span class="post-toc-text">全局作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#局部作用域"><span class="post-toc-text">局部作用域</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作用域链"><span class="post-toc-text">作用域链</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#闭包"><span class="post-toc-text">闭包</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的特点："><span class="post-toc-text">闭包的特点：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的作用"><span class="post-toc-text">闭包的作用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闭包的用途"><span class="post-toc-text">闭包的用途</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -179,10 +179,6 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -279,7 +275,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -289,7 +285,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -299,7 +295,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -423,15 +419,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -461,7 +448,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -471,7 +458,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/01/js_closure/&title=《JavaScript中的闭包》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -481,7 +468,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript中的闭包》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/01/js_closure/&via=http://blog.sgoldl.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -536,8 +523,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 

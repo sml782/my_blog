@@ -14,7 +14,7 @@
     
     
     
-    <title>JavaScript面向对象程序设计 | Technology of heaven | Personal homepage</title>
+    <title>JavaScript面向对象程序设计 | 亖 巠 的博客 | 人在码在，为码？为码！为码。</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -26,7 +26,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript面向对象程序设计">
 <meta property="og:url" content="http://blog.sgoldl.top/2018/07/02/oop_extend/index.html">
-<meta property="og:site_name" content="Technology of heaven">
+<meta property="og:site_name" content="亖 巠 的博客">
 <meta property="og:description" content="JavaScript面向对象程序设计本文会碰到的知识点：原型、原型链、函数对象、普通对象、继承 读完本文，可以学到  面向对象的基本概念 JavaScript对象属性 理解JavaScript中的函数对象与普通对象 理解prototype和proto 理解原型和原型链 详解原型链相关的Object方法 了解如何用ES5模拟类，以及各种方式的优缺点 了解如何用ES6实现面向对象  一、面向对象的基本">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://sml-myoss.oss-cn-beijing.aliyuncs.com/blog/word_img/20180702231814.png">
@@ -36,7 +36,7 @@
 <meta name="twitter:description" content="JavaScript面向对象程序设计本文会碰到的知识点：原型、原型链、函数对象、普通对象、继承 读完本文，可以学到  面向对象的基本概念 JavaScript对象属性 理解JavaScript中的函数对象与普通对象 理解prototype和proto 理解原型和原型链 详解原型链相关的Object方法 了解如何用ES5模拟类，以及各种方式的优缺点 了解如何用ES6实现面向对象  一、面向对象的基本">
 <meta name="twitter:image" content="http://sml-myoss.oss-cn-beijing.aliyuncs.com/blog/word_img/20180702231814.png">
     
-        <link rel="alternate" type="application/atom+xml" title="Technology of heaven" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="亖 巠 的博客" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
@@ -162,7 +162,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、面向对象的基本概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、面向对象的基本概念</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、JavaScript对象属性"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、JavaScript对象属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-属性"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-应用"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">2.3 应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、对象分为函数对象和普通对象"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、对象分为函数对象和普通对象</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、理解prototype和proto"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、理解prototype和proto</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、理解原型与原型链"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、理解原型与原型链</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、与原型链相关的方法"><span class="post-toc-number">6.</span> <span class="post-toc-text">六、与原型链相关的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-1-hasOwnProperty"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">6.1 hasOwnProperty</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-2-isPrototypeOf"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">6.2 isPrototypeOf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-3-getPrototypeOf"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">6.3 getPrototypeOf</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、ES5-对象继承"><span class="post-toc-number">7.</span> <span class="post-toc-text">七、ES5 对象继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-1-原型继承"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">7.1 原型继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-2-构造函数继承"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">7.2 构造函数继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-3-组合式继承"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">7.3 组合式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-4-原型式继承"><span class="post-toc-number">7.4.</span> <span class="post-toc-text">7.4 原型式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-5-寄生式继承"><span class="post-toc-number">7.5.</span> <span class="post-toc-text">7.5 寄生式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-6-寄生组合式继承"><span class="post-toc-number">7.6.</span> <span class="post-toc-text">7.6 寄生组合式继承</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#八、ES6-实现继承"><span class="post-toc-number">8.</span> <span class="post-toc-text">八、ES6 实现继承</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、面向对象的基本概念"><span class="post-toc-text">一、面向对象的基本概念</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、JavaScript对象属性"><span class="post-toc-text">二、JavaScript对象属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-属性"><span class="post-toc-text">2.1 属性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-方法"><span class="post-toc-text">2.2 方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-3-应用"><span class="post-toc-text">2.3 应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、对象分为函数对象和普通对象"><span class="post-toc-text">三、对象分为函数对象和普通对象</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、理解prototype和proto"><span class="post-toc-text">四、理解prototype和proto</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#五、理解原型与原型链"><span class="post-toc-text">五、理解原型与原型链</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#六、与原型链相关的方法"><span class="post-toc-text">六、与原型链相关的方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-1-hasOwnProperty"><span class="post-toc-text">6.1 hasOwnProperty</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-2-isPrototypeOf"><span class="post-toc-text">6.2 isPrototypeOf</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-3-getPrototypeOf"><span class="post-toc-text">6.3 getPrototypeOf</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#七、ES5-对象继承"><span class="post-toc-text">七、ES5 对象继承</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-1-原型继承"><span class="post-toc-text">7.1 原型继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-2-构造函数继承"><span class="post-toc-text">7.2 构造函数继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-3-组合式继承"><span class="post-toc-text">7.3 组合式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-4-原型式继承"><span class="post-toc-text">7.4 原型式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-5-寄生式继承"><span class="post-toc-text">7.5 寄生式继承</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-6-寄生组合式继承"><span class="post-toc-text">7.6 寄生组合式继承</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#八、ES6-实现继承"><span class="post-toc-text">八、ES6 实现继承</span></a></li></ol>
         </nav>
     </aside>
 
@@ -181,10 +181,6 @@
 
 
             
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -503,7 +499,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -513,7 +509,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -523,7 +519,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript面向对象程序设计》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/02/oop_extend/&via=http://blog.sgoldl.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript面向对象程序设计》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/02/oop_extend/&via=http://blog.sgoldl.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -548,7 +544,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/27/js_debounce_throttle/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">JS简单实现防抖和节流</h4>
+      </a>
+    </div>
   
 
   
@@ -640,15 +643,6 @@
         <footer class="footer">
     <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
 
         <p>
             
@@ -678,7 +672,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — Technology of heaven&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — 亖 巠 的博客&pic=http://blog.sgoldl.top/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -688,7 +682,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — Technology of heaven&source=亖 巠 的个人博客。" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.sgoldl.top/2018/07/02/oop_extend/&title=《JavaScript面向对象程序设计》 — 亖 巠 的博客&source=亖 巠 的个人博客。" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -698,7 +692,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript面向对象程序设计》 — Technology of heaven&url=http://blog.sgoldl.top/2018/07/02/oop_extend/&via=http://blog.sgoldl.top" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript面向对象程序设计》 — 亖 巠 的博客&url=http://blog.sgoldl.top/2018/07/02/oop_extend/&via=http://blog.sgoldl.top" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -753,8 +747,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
