@@ -8,7 +8,7 @@
   "scripts": {
     "start": "hexo server --watch",
     "dev": "hexo generate --watch",
-    "publish": "hexo clean && hexo deploy --generate"
+    "publish": "hexo clean && hexo generate && cp search_option/* public/ && hexo deploy"
   },
   "dependencies": {
     "hexo": "^3.2.0",
