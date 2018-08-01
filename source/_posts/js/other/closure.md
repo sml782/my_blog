@@ -6,25 +6,29 @@ categories: [ JS ]
 published: true
 ---
 # 作用域
+
 先来说下什么是作用域，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。他减少了名称冲突，并且提供了自动内存管理。
 在JavaScript中，变量的作用域有全局作用域和局部作用域两种。
 
 ## 全局作用域
+
 ```js
 var num1 = 1;
 function fun1 (){
-    num2 = 2;
+  num2 = 2;
 }
 ```
-以上三个对象 `num1`, `num2` 和 `fun1` 均是全局作用域，这里要注意的是 ** 末定义直接赋值的变量自动声明为拥有全局作用域 **；
+
+以上三个对象 `num1`, `num2` 和 `fun1` 均是全局作用域，这里要注意的是 **末定义直接赋值的变量自动声明为拥有全局作用域**；
 
 ## 局部作用域
+
 ```js
 function wrap(){
-    var obj = "我被wrap包裹起来了，wrap外部无法直接访问到我";
-    function innerFun(){
-        //外部无法访问我
-    }
+  var obj = "我被wrap包裹起来了，wrap外部无法直接访问到我";
+  function innerFun(){
+      //外部无法访问我
+  }
 }
 ```
 
@@ -92,104 +96,112 @@ fn2();        //输出3
 基本所有浏览器都是使用“标记清除”的方式回收内存。也就是说，当变量进入执行环境的时候（在函数中声明一个变量），就给变量添加标记，而当函数执行完的，变量不再被引用的时候，再添加删除的标记，垃圾收集器就会自动清楚这个变量占有的内存。但在闭包中引用了函数中的变量，而闭包又被当作结果返回时，闭包中的因为被引用就不会被清除
 
 ## 闭包的用途
+
 1. 匿名自执行函数
+
 我们知道所有的变量，如果不加上var关键字，则默认的会添加到全局对象的属性上去，这样的临时变量加入全局对象有很多坏处，
 比如：别的函数可能误用这些变量；造成全局对象过于庞大，影响访问速度(因为变量的取值是需要从原型链上遍历的)。
-除了每次使用变量都是用var关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，
+除了每次使用变量都是用`var`关键字外，我们在实际情况下经常遇到这样一种情况，即有的函数只需要执行一次，其内部变量无需维护，
 比如UI的初始化，那么我们可以使用闭包：
+
 ```js
-var data= {    
-    table : [],    
-    tree : {}    
-};    
-     
-(function(dm){    
-    for(var i = 0; i < dm.table.rows; i++){    
-        var row = dm.table.rows[i];    
-        for(var j = 0; j < row.cells; i++){    
-            drawCell(i, j);    
-        }    
-    }    
-       
+var data= {
+  table : [],
+  tree : {}
+};
+
+(function(dm){
+  for(var i = 0; i < dm.table.rows; i++){
+    var row = dm.table.rows[i];
+    for(var j = 0; j < row.cells; i++){
+      drawCell(i, j);
+    }
+  }
 })(data);
 ```
+
 我们创建了一个匿名的函数，并立即执行它，由于外部无法引用它内部的变量，因此在函数执行完后会立刻释放资源，关键是不污染全局对象。
 
 2. 结果缓存
+
 我们开发中会碰到很多情况，设想我们有一个处理过程很耗时的函数对象，每次调用都会花费很长时间，
 
 那么我们就需要将计算出来的值存储起来，当调用这个函数的时候，首先在缓存中查找，如果找不到，则进行计算，然后更新缓存并返回值，如果找到了，直接返回查找到的值即可。闭包正是可以做到这一点，因为它不会释放外部的引用，从而函数内部的值可以得以保留。
+
 ```js
-var CachedSearchBox = (function(){    
-    var cache = {},    
-        count = [];    
-    return {    
-        attachSearchBox : function(dsid){    
-            if(dsid in cache){//如果结果在缓存中    
-                return cache[dsid];//直接返回缓存中的对象    
-            }    
-            var fsb = new uikit.webctrl.SearchBox(dsid);//新建    
-            cache[dsid] = fsb;//更新缓存    
-            if(count.length > 100){//保正缓存的大小<=100    
-                delete cache[count.shift()];    
-            }    
-            return fsb;          
-        },    
-     
-        clearSearchBox : function(dsid){    
-            if(dsid in cache){    
-                cache[dsid].clearSelection();      
-            }    
-        }    
-    };    
-})();    
-     
+var CachedSearchBox = (function(){
+  var cache = {},
+      count = [];
+  return {
+    attachSearchBox : function(dsid){
+      if(dsid in cache){ //如果结果在缓存中
+        return cache[dsid]; //直接返回缓存中的对象
+      }
+      var fsb = new uikit.webctrl.SearchBox(dsid); //新建
+      cache[dsid] = fsb; //更新缓存
+      if(count.length > 100){ //保正缓存的大小<=100
+        delete cache[count.shift()];
+      }
+      return fsb;
+    },
+
+    clearSearchBox : function(dsid){
+      if(dsid in cache){
+        cache[dsid].clearSelection();
+      }
+    }
+  };
+})();
+
 CachedSearchBox.attachSearchBox("input");
 ```
+
 这样我们在第二次调用的时候，就会从缓存中读取到该对象。
 
 3. 封装
+
 ```js
-var person = function(){    
-    //变量作用域为函数内部，外部无法访问    
-    var name = "default";       
-       
-    return {    
-        getName : function(){    
-            return name;    
-        },    
-        setName : function(newName){    
-            name = newName;    
-        }    
-    }    
-}();    
-     
-print(person.name);//直接访问，结果为undefined    
-print(person.getName());    
-person.setName("abruzzi");    
-print(person.getName());    
-   
-得到结果如下：  
-   
+var person = function(){
+  //变量作用域为函数内部，外部无法访问
+  var name = "default";
+
+  return {
+      getName : function(){
+          return name;
+      },
+      setName : function(newName){
+          name = newName;
+      }
+  }
+}();
+
+print(person.name);//直接访问，结果为undefined
+print(person.getName());
+person.setName("abruzzi");
+print(person.getName());
+
+// 得到结果如下：  
+
 // undefined  
 // default  
 // abruzzi
 ```
 
 4. 实现类和继承
+
 ```js
-function Person(){    
-    var name = "default";       
-       
-    return {    
-       getName : function(){    
-           return name;    
-       },    
-       setName : function(newName){    
-           name = newName;    
-       }    
-    }    
-};   
+function Person(){
+  var name = "default";
+
+  return {
+    getName : function(){
+      return name;
+    },
+    setName : function(newName){
+      name = newName;
+    }
+  }
+};
 
 var p = new Person();
 p.setName("Tom");
@@ -200,13 +212,14 @@ var Jack = function(){};
 Jack.prototype = new Person();
 //添加私有方法
 Jack.prototype.Say = function(){
-    alert("Hello,my name is Jack");
+  alert("Hello,my name is Jack");
 };
 var j = new Jack();
 j.setName("Jack");
 j.Say();
 alert(j.getName());
 ```
+
 我们定义了`Person`，它就像一个类，我们`new`一个`Person`对象，访问它的方法。
 
 下面我们定义了`Jack`，继承`Person`，并添加自己的方法。

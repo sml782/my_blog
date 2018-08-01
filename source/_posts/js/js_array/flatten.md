@@ -158,15 +158,18 @@ console.log(flatten(arr));
 ```
 
 ## 2.5 ES6 中的 解构运算符 `...`
+*  `...` 每次只能展开最外层的数组，被 `[].concat` 后，`arr` 就扁平化一次。
 
 ```js
 function flatten(arr){
-  while(arr.some(item=> Array.isArray(item))){
-    arr=[].concat(...arr)
+  while(arr.some(item => Array.isArray(item))){
+    arr = [].concat(...arr);
   }
-  return arr
+  return arr;
 }
 
 const arr = [1, [2, [3, 4]]];
 console.log(flatten(arr));
 ```
+
+**番外篇将给大家讲解 `lodash` 中 `flatten` 的实现源码，感谢大家阅读！**
