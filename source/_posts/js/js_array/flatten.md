@@ -12,14 +12,18 @@ published: true
 2. 数组扁平化，对着上面意思套也知道了，就是将一个复杂的嵌套多层的数组，一层一层的转化为层级较少或者只有一层的数组。
 
 **Ps**: `flatten` 可以使数组扁平化，效果就会如下：
+
 ```js
 const arr = [1, [2, [3, 4]]];
 console.log(flatten(arr)); // [1, 2, 3, 4]
 ```
+
 > 从中可以看出，使用 `flatten` 处理后的数组只有一层，下面我们来试着实现一下。
 
 # 二、简单实现
+
 ## 2.1 普通递归
+
 * 这是最容易想到的方法，简单，清晰！
 
 ```js
@@ -60,6 +64,7 @@ console.log(flatten(arr));
 ```
 
 ## 2.2 `toString()`
+
 * 该方法是利用 `toString` 把数组变成以逗号分隔的字符串，然后遍历数组把每一项再变回原来的类型。
 
 先来看下 `toString` 是怎么把数组变成字符串的
@@ -95,6 +100,7 @@ console.log(flatten(arr));
 > 也可以全部都为 `String`，具体实现大家自己体会。
 
 ## 2.3 `[].concat.apply` + `some`
+
 * 利用 `arr.some` 判断当数组中还有数组的话，循环调用 `flatten` 扁平函数(利用 `[].concat.apply`扁平), 用 `concat` 连接，最终返回 `arr`;
 
 ```js
@@ -144,6 +150,7 @@ console.log(flatten(arr));
 ```
 
 ## 2.4 `reduce`
+
 * `reduce` 本身就是一个迭代循环器，通常用于累加，所以根据这一特点有以下：
 
 ```js
@@ -158,7 +165,8 @@ console.log(flatten(arr));
 ```
 
 ## 2.5 ES6 中的 解构运算符 `...`
-*  `...` 每次只能展开最外层的数组，被 `[].concat` 后，`arr` 就扁平化一次。
+
+* `...` 每次只能展开最外层的数组，被 `[].concat` 后，`arr` 就扁平化一次。
 
 ```js
 function flatten(arr){
