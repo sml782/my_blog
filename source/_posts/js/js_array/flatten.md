@@ -4,7 +4,7 @@ description: 数组扁平化
 date: 2018-07-31 16:30:18
 tags: [ 数组, 数组扁平化 ]
 categories: [ JS ]
-published: false
+published: true
 ---
 # 一、什么是数组扁平化
 
