@@ -261,7 +261,7 @@ export default flatMap;
 
 ## 1.`Array.prototype.flat`
 
-* 本函数还没和 `flatMapDepth` 类似，只不过是挂载在 `Array` 实例下的函数。
+* 本函数和 `flatMapDepth` 类似，只不过是挂载在 `Array` 实例下的函数。
 
 ```js
 // 判断是否可展开
