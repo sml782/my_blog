@@ -264,16 +264,19 @@ export default flatMap;
 * 本函数还没和 `flatMapDepth` 类似，只不过是挂载在 `Array` 实例下的函数。
 
 ```js
+// 判断是否可展开
+function isFlattenable(value) {
+  const spreadableSymbol = Symbol.isConcatSpreadable;
+  return Array.isArray(value) || _.isArguments(value) ||
+    !!(spreadableSymbol && value && value[spreadableSymbol]);
+}
+
 // 判断空
 function isEmpty(value) {
   if (value === undefined || value === null) {
     return true;
   }
   return false;
-}
-
-if (isEmpty(value)) {
-  array.splice(array.indexOf(value), 1);
 }
 
 function baseFlatten(array, depth, predicate, isStrict, result) {
